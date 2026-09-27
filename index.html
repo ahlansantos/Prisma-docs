@@ -412,6 +412,18 @@ kernel void custom_bloom(
                             <span class="text-xs px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 font-medium">Latest Release</span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Block Corner & Edge Normal Reconstruction</span>
+                                <p class="text-sm text-gray-500 mt-1">Eliminated white highlights and normal flipping along block edges/corners by weighting axis-snapped normals with camera view alignment and filtering fallback normals to front-facing geometry.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glass Dual-Pass Z-Fighting Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Isolated glass reflection detection strictly to internal block voxels, eliminating z-fighting and flickering on solid walls adjacent to or facing glass.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Underwater Fog Boundary & Boosted God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">Volumetric atmospheric fog now halts cleanly at the water surface and is disabled underwater (fixing sea lantern scanlines), with significantly enhanced sun beam intensity through crevices and canopies.</p>
+                            </div>
                             <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Dual-Pass Translucent Deferred Shading</span>
                                 <p class="text-sm text-gray-500 mt-1">Split deferred lighting into pre/post-translucent passes. Looking through stained glass and water now reveals full deferred sun/point light shadows and VXAO instead of vanilla lighting!</p>
