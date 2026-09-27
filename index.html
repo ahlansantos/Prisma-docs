@@ -208,7 +208,7 @@
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </div>
-            PRISMA 26.3 PREVIEW 1 IS LIVE
+            PRISMA 26.3 PREVIEW 2 IS LIVE
         </div>
 
         <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-6 text-white leading-[1.05] max-w-5xl">
@@ -376,12 +376,12 @@ kernel void custom_bloom(
                 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-6">
                 <!-- Download Button -->
-                <a href="downloads/prisma-26.3-preview.1.jar" class="group relative flex items-center justify-center gap-4 px-10 py-5 bg-white text-black font-semibold text-lg rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto">
+                <a href="downloads/prisma-26.3-preview.2.jar" class="group relative flex items-center justify-center gap-4 px-10 py-5 bg-white text-black font-semibold text-lg rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto">
                     <div class="absolute inset-0 rounded-2xl bg-white blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    <span class="relative z-10">Download Preview 1</span>
+                    <span class="relative z-10">Download Preview 2</span>
                 </a>
                 
                 <!-- Discord Button -->
@@ -404,9 +404,59 @@ kernel void custom_bloom(
                         <span class="chromatic-text">Full Changelog</span>
                     </h3>
                     
+                    <!-- Preview 2 -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 2</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 font-medium">Latest Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Ray Traced Volumetric Fog Scattering</span>
+                                <p class="text-sm text-gray-500 mt-1">Ground-up GPU ray march implementation with Henyey-Greenstein scattering, Beer-Lambert absorption, and configurable ray steps.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Sun & Moon God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">True atmospheric crepuscular beams cast from the sun and moon directly through open sky, canopies, and window frames.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Colored Glass Volumetric Light Staining</span>
+                                <p class="text-sm text-gray-500 mt-1">Light beams traversing stained glass dynamically tint to the physical chromatic hue of each glass pane.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Linked Reflection Penumbra</span>
+                                <p class="text-sm text-gray-500 mt-1">Reflection soft shadows are dynamically tied to the world shadow penumbra slider (0 = razor sharp, >0 = realistic soft penumbra).</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Point Light Shadows in Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Full raytraced DDA point light shadows inside reflections with colored stained glass penetration.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Authentic Pixel-Art Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed blurry bilinear filtering from voxel reflections, restoring crisp, authentic Minecraft texture sampling.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glass Reflection Transparency</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed reflection rays terminating on glass; rays now traverse transparent panes into the scenery beyond.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Dark Indoor Room Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Calibrated sky ambient attenuation and enhanced Double AO inside voxel grid reflections, eliminating bright walls in dark indoor rooms.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Balanced Volumetric Multipliers</span>
+                                <p class="text-sm text-gray-500 mt-1">Softened torch fog to a subtle warm haze, properly tuned lanterns and sea lanterns, and aligned handheld lights with hands.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">3rd-Person Player Shadow & Auto-Exposure</span>
+                                <p class="text-sm text-gray-500 mt-1">Player models now cast accurate shadows in 3rd-person perspective, and flickering auto-exposure passes have been removed.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Preview 1 -->
-                    <div class="mb-10 text-left max-w-4xl mx-auto">
-                        <h4 class="text-lg font-semibold text-gray-200 mb-6 border-b border-gray-800 pb-2">Prisma 26.3 Preview 1</h4>
+                    <div class="mb-10 text-left max-w-4xl mx-auto opacity-80">
+                        <h4 class="text-lg font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">Prisma 26.3 Preview 1</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
                             <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Ported to Minecraft 26.3</span>
