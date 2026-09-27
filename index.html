@@ -413,6 +413,14 @@ kernel void custom_bloom(
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
                             <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Dual-Pass Translucent Deferred Shading</span>
+                                <p class="text-sm text-gray-500 mt-1">Split deferred lighting into pre/post-translucent passes. Looking through stained glass and water now reveals full deferred sun/point light shadows and VXAO instead of vanilla lighting!</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Translucent Glass & Water Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Restored and polished specular reflections for stained glass and water across the dual-pass pipeline.</p>
+                            </div>
+                            <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Ray Traced Volumetric Fog Scattering</span>
                                 <p class="text-sm text-gray-500 mt-1">Ground-up GPU ray march implementation with Henyey-Greenstein scattering, Beer-Lambert absorption, and configurable ray steps.</p>
                             </div>
