@@ -469,11 +469,77 @@ kernel void custom_bloom(
                         </div>
                     </div>
                     
+                    <!-- Preview 3 — NEW -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 font-medium">Latest Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">ACES Filmic Tone Mapping</span>
+                                <p class="text-sm text-gray-500 mt-1">Hill ACES approximation prevents hard white clipping. Exposure adapts dynamically: 0.85 at noon, 0.72 during golden hour for richer, cinematic saturation.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Cinematic Golden Hour Sun</span>
+                                <p class="text-sm text-gray-500 mt-1">Full sunrise/sunset palette: rich amber transitioning to deep orange as the sun approaches the horizon. God rays gain a 1.20x warm boost at crepuscolo.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Bliss-Style Dual-Layer Clouds</span>
+                                <p class="text-sm text-gray-500 mt-1">Layer 1 (Stratocumulus Undulatus, 620–900u): parallel rolling bands via sine-wave domain distortion. Layer 2 (Altocumulus Undulatus, 1220–1500u): high mackerel-sky ripples. Both with Silver Lining and Beer-Lambert self-shadowing.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Crystal Clear Water</span>
+                                <p class="text-sm text-gray-500 mt-1">Vanilla water texture completely replaced by physically accurate Beer-Lambert depth absorption. Shallow: crystal turquoise. Deep: midnight navy. Spectral extinction (R absorbed first, B last).</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Gerstner Directional Ocean Waves</span>
+                                <p class="text-sm text-gray-500 mt-1">5 directional ocean swells replace isotropic noise. Primary swell creates the realistic parallel-band sea look. Sharp crests and flat troughs — physically correct Gerstner displacement.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">SSR for Distant Water</span>
+                                <p class="text-sm text-gray-500 mt-1">Water beyond the 56-block voxel grid now uses Screen-Space Reflections (clip-space UV reprojection) instead of missing voxel ray traces. Sky-fallback blends naturally.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Procedural Puddles 2.0</span>
+                                <p class="text-sm text-gray-500 mt-1">Multi-octave FBM noise for organic blob shapes. Wet ground near water bodies activates without rain. 3-component ripple normals for realistic rain splash rings.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Rayleigh Atmospheric Haze</span>
+                                <p class="text-sm text-gray-500 mt-1">Clear-day fog is now completely decoupled from rain. Mountains have natural horizon haze (starts at 80 blocks) even in clear weather. Rain adds a separate, denser visibility reduction curve.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Max Point Lights Slider</span>
+                                <p class="text-sm text-gray-500 mt-1">New UI slider (16–256) to control how many point lights are processed. Mansion/dungeon maps can now unlock 128 or 256 lights to cover large areas fully.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glowstone & Froglight Fog Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed self-occlusion bug where DDA shadow rays started inside solid emissive blocks, causing glowstone and froglights to emit zero volumetric fog. Shadow target is now correctly offset.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Underwater Light Transmission</span>
+                                <p class="text-sm text-gray-500 mt-1">Animated solar caustic pools on submerged floors. Gerstner wave Jacobian focuses/defocuses the sun beam. Beer-Lambert depth attenuation with spectral tint. Synchronized with surface waves.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">3D Spatial Volumetric Light Volumes</span>
+                                <p class="text-sm text-gray-500 mt-1">Volumetric fog now has two scattering components: directional HG forward lobe + omnidirectional spatial radiance (g=0). Walking through a torch-lit corridor fills the air from any angle — like Rockstar Shaders and MHRT.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Geometric Shadow for Distant Terrain</span>
+                                <p class="text-sm text-gray-500 mt-1">Pixels beyond the voxel grid (~56 blocks) receive NdotL-based geometric self-shadowing, preventing the uniformly lit washed-out look on distant mountains and cliffs.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Retina MetalFX Auto-Detect</span>
+                                <p class="text-sm text-gray-500 mt-1">Prisma automatically selects the best MetalFX render scale for your display on first launch: 0.40 for M4 Max native 3.4K, 0.50 for standard Retina, 0.75 for 1080p. Overridable from settings.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Preview 2 -->
                     <div class="mb-12 text-left max-w-4xl mx-auto">
                         <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
                             <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 2 (Hotfix)</h4>
-                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 font-medium">Latest Release</span>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-gray-700/50 text-gray-400 border border-gray-700 font-medium">Previous Release</span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
                             <div class="patch-item patch-fix">
