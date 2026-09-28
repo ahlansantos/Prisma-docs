@@ -163,20 +163,65 @@
         }
         .patch-item {
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1.75rem;
         }
         .patch-item::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 0.6rem;
-            width: 6px;
-            height: 6px;
+            top: 0.55rem;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .patch-new::before { background: #34c759; box-shadow: 0 0 10px #34c759; }
-        .patch-update::before { background: #007aff; box-shadow: 0 0 10px #007aff; }
-        .patch-fix::before { background: #ff9500; box-shadow: 0 0 10px #ff9500; }
+        .patch-item:hover::before {
+            transform: scale(1.35);
+        }
+        .patch-new::before { background: #34c759; box-shadow: 0 0 10px rgba(52, 199, 89, 0.9), 0 0 2px #fff; }
+        .patch-update::before { background: #0a84ff; box-shadow: 0 0 10px rgba(10, 132, 255, 0.9), 0 0 2px #fff; }
+        .patch-fix::before { background: #ff9f0a; box-shadow: 0 0 10px rgba(255, 159, 10, 0.9), 0 0 2px #fff; }
+
+        .patch-legend {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.4rem 0.85rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 9999px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+        .patch-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            letter-spacing: 0.01em;
+            transition: all 0.2s ease;
+        }
+        .patch-legend-new {
+            color: #4cd964;
+            background: rgba(52, 199, 89, 0.12);
+            border: 1px solid rgba(52, 199, 89, 0.28);
+        }
+        .patch-legend-update {
+            color: #5ac8fa;
+            background: rgba(10, 132, 255, 0.12);
+            border: 1px solid rgba(10, 132, 255, 0.28);
+        }
+        .patch-legend-fix {
+            color: #ffb340;
+            background: rgba(255, 159, 10, 0.12);
+            border: 1px solid rgba(255, 159, 10, 0.28);
+        }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col items-center">
@@ -401,9 +446,28 @@ kernel void custom_bloom(
 
                 <!-- Patch Notes - Prisma Style -->
                 <div class="w-full patch-notes-container pt-12">
-                    <h3 class="text-2xl font-bold text-white mb-8 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">
                         <span class="chromatic-text">Full Changelog</span>
                     </h3>
+
+                    <!-- Apple-style Patch Legend -->
+                    <div class="flex justify-center mb-10">
+                        <div class="patch-legend">
+                            <span class="text-xs text-gray-400 font-normal mr-1">Legend:</span>
+                            <div class="patch-legend-item patch-legend-new">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                <span>New Feature</span>
+                            </div>
+                            <div class="patch-legend-item patch-legend-update">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                <span>Improvement</span>
+                            </div>
+                            <div class="patch-legend-item patch-legend-fix">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>Bug Fix</span>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- Preview 2 -->
                     <div class="mb-12 text-left max-w-4xl mx-auto">
@@ -412,6 +476,10 @@ kernel void custom_bloom(
                             <span class="text-xs px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 font-medium">Latest Release</span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">3D HUD Depth-Only Pass Crash Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Handled empty color attachment descriptors in Metal render passes, resolving a <code>NoSuchElementException</code> crash during <code>GameRenderer.integrate3DHudDepth</code>.</p>
+                            </div>
                             <div class="patch-item patch-fix">
                                 <span class="text-white font-medium">Block Corner & Edge Normal Reconstruction</span>
                                 <p class="text-sm text-gray-500 mt-1">Eliminated white highlights and normal flipping along block edges/corners by weighting axis-snapped normals with camera view alignment and filtering fallback normals to front-facing geometry.</p>
