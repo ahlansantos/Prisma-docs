@@ -477,36 +477,36 @@ kernel void custom_bloom(
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">ACES Filmic Tone Mapping</span>
-                                <p class="text-sm text-gray-500 mt-1">Hill ACES approximation prevents hard white clipping. Exposure adapts dynamically: 0.85 at noon, 0.72 during golden hour for richer, cinematic saturation.</p>
+                                <span class="text-white font-medium">AgX Tone Mapping</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced ACES with full AgX color science. Eliminates crushed blacks in caves/shadows with an open soft toe, and prevents highlights from blowing out to digital white, preserving rich sunset and noon colors.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Cinematic Golden Hour Sun</span>
-                                <p class="text-sm text-gray-500 mt-1">Full sunrise/sunset palette: rich amber transitioning to deep orange as the sun approaches the horizon. God rays gain a 1.20x warm boost at crepuscolo.</p>
+                                <span class="text-white font-medium">Physical Vertical Water Depth</span>
+                                <p class="text-sm text-gray-500 mt-1">Water depth is now measured physically by counting water voxels straight down to the riverbed/seabed. Shallow water (1–2 blocks) is crystal clear, turquoise, and the seabed is 100% visible regardless of viewing distance. Deep ocean naturally fades into midnight navy.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Water Shoreline Z-Fighting Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Strictly isolated fluid shading to real water voxels, completely eliminating z-fighting and color bleeding on adjacent sand and dirt shorelines.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Bliss-Style Dual-Layer Clouds</span>
-                                <p class="text-sm text-gray-500 mt-1">Layer 1 (Stratocumulus Undulatus, 620–900u): parallel rolling bands via sine-wave domain distortion. Layer 2 (Altocumulus Undulatus, 1220–1500u): high mackerel-sky ripples. Both with Silver Lining and Beer-Lambert self-shadowing.</p>
+                                <span class="text-white font-medium">Flattened Cumulus Clouds & Lunar Illumination</span>
+                                <p class="text-sm text-gray-500 mt-1">Reduced vertical cloud height from 280u down to ~100u, removing monolithic towers while preserving blocky cumulus volume. At night, the moon dynamically illuminates clouds with a brilliant silver lining facing the moon.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Crystal Clear Water</span>
-                                <p class="text-sm text-gray-500 mt-1">Vanilla water texture completely replaced by physically accurate Beer-Lambert depth absorption. Shallow: crystal turquoise. Deep: midnight navy. Spectral extinction (R absorbed first, B last).</p>
+                                <span class="text-white font-medium">World-Space Locked 100% Ray Traced God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">Maintained 100% real DDA ray-traced compute fog while locking sampling slices to world-space planes. Volumetric light beams stay rock-solid in 3D space when walking or looking around, with dual-lobe scattering for side visibility.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">1050p Block Edge White Lines Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Dynamically scaled the depth derivative threshold by the texel world footprint, completely curing white outline artifacts on block corners at 1050p, 900p, and lower resolutions.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Distant Terrain Smooth Transition (7-Chunk Ring Fix)</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced the harsh CSM boundary cutoff with a continuous smoothstep transition, eliminating the black ring and flickering terrain shadows at the ~7-chunk voxel boundary.</p>
                             </div>
                             <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Gerstner Directional Ocean Waves</span>
-                                <p class="text-sm text-gray-500 mt-1">5 directional ocean swells replace isotropic noise. Primary swell creates the realistic parallel-band sea look. Sharp crests and flat troughs — physically correct Gerstner displacement.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">SSR for Distant Water</span>
-                                <p class="text-sm text-gray-500 mt-1">Water beyond the 56-block voxel grid now uses Screen-Space Reflections (clip-space UV reprojection) instead of missing voxel ray traces. Sky-fallback blends naturally.</p>
-                            </div>
-                            <div class="patch-item patch-update">
-                                <span class="text-white font-medium">Procedural Puddles 2.0</span>
-                                <p class="text-sm text-gray-500 mt-1">Multi-octave FBM noise for organic blob shapes. Wet ground near water bodies activates without rain. 3-component ripple normals for realistic rain splash rings.</p>
-                            </div>
-                            <div class="patch-item patch-update">
-                                <span class="text-white font-medium">Rayleigh Atmospheric Haze</span>
-                                <p class="text-sm text-gray-500 mt-1">Clear-day fog is now completely decoupled from rain. Mountains have natural horizon haze (starts at 80 blocks) even in clear weather. Rain adds a separate, denser visibility reduction curve.</p>
+                                <p class="text-sm text-gray-500 mt-1">5 directional ocean swells replace isotropic noise, creating authentic parallel wave crests and troughs with dynamic Fresnel reflection modulation.</p>
                             </div>
                             <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Max Point Lights Slider</span>
@@ -517,16 +517,8 @@ kernel void custom_bloom(
                                 <p class="text-sm text-gray-500 mt-1">Fixed self-occlusion bug where DDA shadow rays started inside solid emissive blocks, causing glowstone and froglights to emit zero volumetric fog. Shadow target is now correctly offset.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Underwater Light Transmission</span>
-                                <p class="text-sm text-gray-500 mt-1">Animated solar caustic pools on submerged floors. Gerstner wave Jacobian focuses/defocuses the sun beam. Beer-Lambert depth attenuation with spectral tint. Synchronized with surface waves.</p>
-                            </div>
-                            <div class="patch-item patch-new">
                                 <span class="text-white font-medium">3D Spatial Volumetric Light Volumes</span>
-                                <p class="text-sm text-gray-500 mt-1">Volumetric fog now has two scattering components: directional HG forward lobe + omnidirectional spatial radiance (g=0). Walking through a torch-lit corridor fills the air from any angle — like Rockstar Shaders and MHRT.</p>
-                            </div>
-                            <div class="patch-item patch-update">
-                                <span class="text-white font-medium">Geometric Shadow for Distant Terrain</span>
-                                <p class="text-sm text-gray-500 mt-1">Pixels beyond the voxel grid (~56 blocks) receive NdotL-based geometric self-shadowing, preventing the uniformly lit washed-out look on distant mountains and cliffs.</p>
+                                <p class="text-sm text-gray-500 mt-1">Volumetric fog features dual-component scattering: directional HG forward lobe + omnidirectional spatial radiance. Hallways and corridors fill with volumetric light from any viewing angle.</p>
                             </div>
                             <div class="patch-item patch-update">
                                 <span class="text-white font-medium">Retina MetalFX Auto-Detect</span>
