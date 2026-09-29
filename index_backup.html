@@ -446,97 +446,278 @@ kernel void custom_bloom(
 
                 <!-- Patch Notes - Prisma Style -->
                 <div class="w-full patch-notes-container pt-12">
-                    <h3 class="text-3xl font-bold text-white mb-8 text-center tracking-tight">
-                        <span class="chromatic-text">Preview 3.0 Changelog</span>
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">
+                        <span class="chromatic-text">Full Changelog</span>
                     </h3>
 
                     <!-- Apple-style Patch Legend -->
-                    <div class="flex justify-center mb-12">
-                        <div class="patch-legend p-2 px-4 rounded-full bg-black/40 border border-white/10 backdrop-blur-md flex items-center gap-4">
-                            <span class="text-xs text-gray-400 font-medium uppercase tracking-wider mr-2">Legend</span>
-                            <div class="patch-legend-item patch-legend-new flex items-center gap-1.5 text-blue-400">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-                                <span class="text-sm font-semibold">New Feature</span>
+                    <div class="flex justify-center mb-10">
+                        <div class="patch-legend">
+                            <span class="text-xs text-gray-400 font-normal mr-1">Legend:</span>
+                            <div class="patch-legend-item patch-legend-new">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                <span>New Feature</span>
                             </div>
-                            <div class="patch-legend-item patch-legend-update flex items-center gap-1.5 text-purple-400">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                                <span class="text-sm font-semibold">Improvement</span>
+                            <div class="patch-legend-item patch-legend-update">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                <span>Improvement</span>
                             </div>
-                            <div class="patch-legend-item patch-legend-fix flex items-center gap-1.5 text-green-400">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                                <span class="text-sm font-semibold">Bug Fix</span>
+                            <div class="patch-legend-item patch-legend-fix">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>Bug Fix</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Preview 3 — NEW -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 font-medium">Latest Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Luma-Preserving Filmic Tone Mapping</span>
+                                <p class="text-sm text-gray-500 mt-1">Luminance-only curve that preserves 100% of real RGB chromaticity. Eliminates the grey, washed-out veil while keeping lush green grass, deep blue skies, and rich golden sunsets with an open, uncrushed shadow toe.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Physical Vertical Water Depth</span>
+                                <p class="text-sm text-gray-500 mt-1">Water depth is now measured physically by counting water voxels straight down to the riverbed/seabed. Shallow water (1–2 blocks) is crystal clear, turquoise, and the seabed is 100% visible regardless of viewing distance. Deep ocean naturally fades into midnight navy.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Water Shoreline Z-Fighting Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Strictly isolated fluid shading to real water voxels, completely eliminating z-fighting and color bleeding on adjacent sand and dirt shorelines.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Flattened Cumulus Clouds & Lunar Illumination</span>
+                                <p class="text-sm text-gray-500 mt-1">Reduced vertical cloud height from 280u down to ~100u, removing monolithic towers while preserving blocky cumulus volume. At night, the moon dynamically illuminates clouds with a brilliant silver lining facing the moon.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">World-Space Locked 100% Ray Traced God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">Maintained 100% real DDA ray-traced compute fog while locking sampling slices to world-space planes. Volumetric light beams stay rock-solid in 3D space when walking or looking around, with dual-lobe scattering for side visibility.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">1050p Block Edge White Lines Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Dynamically scaled the depth derivative threshold by the texel world footprint, completely curing white outline artifacts on block corners at 1050p, 900p, and lower resolutions.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Distant Terrain Smooth Transition (7-Chunk Ring Fix)</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced the harsh CSM boundary cutoff with a continuous smoothstep transition, eliminating the black ring and flickering terrain shadows at the ~7-chunk voxel boundary.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Gerstner Directional Ocean Waves</span>
+                                <p class="text-sm text-gray-500 mt-1">5 directional ocean swells replace isotropic noise, creating authentic parallel wave crests and troughs with dynamic Fresnel reflection modulation.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Max Point Lights Slider</span>
+                                <p class="text-sm text-gray-500 mt-1">New UI slider (16–256) to control how many point lights are processed. Mansion/dungeon maps can now unlock 128 or 256 lights to cover large areas fully.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glowstone & Froglight Fog Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed self-occlusion bug where DDA shadow rays started inside solid emissive blocks, causing glowstone and froglights to emit zero volumetric fog. Shadow target is now correctly offset.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">3D Spatial Volumetric Light Volumes</span>
+                                <p class="text-sm text-gray-500 mt-1">Volumetric fog features dual-component scattering: directional HG forward lobe + omnidirectional spatial radiance. Hallways and corridors fill with volumetric light from any viewing angle.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Retina MetalFX Auto-Detect</span>
+                                <p class="text-sm text-gray-500 mt-1">Prisma automatically selects the best MetalFX render scale for your display on first launch: 0.40 for M4 Max native 3.4K, 0.50 for standard Retina, 0.75 for 1080p. Overridable from settings.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Patch Notes Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                        
-                        <!-- Left Column -->
-                        <div class="space-y-6">
-                            <div class="bg-black/30 border border-white/5 rounded-2xl p-6 hover:bg-black/40 transition-colors">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <div class="p-2 bg-blue-500/20 text-blue-400 rounded-lg">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-lg">Cinematic Post-Processing</h4>
-                                </div>
-                                <ul class="space-y-3 text-gray-400 text-sm">
-                                    <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">•</span> <span>Added <strong>Anamorphic Lens Flares</strong> with ghosts and halos for bright light sources.</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">•</span> <span>Overhauled <strong>Bloom intensity (+130%)</strong> for a much softer, dreamy atmosphere.</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">•</span> <span>Introduced <strong>Chromatic Aberration</strong> on screen edges.</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">•</span> <span>Added <strong>Soft Vignette</strong> for framing and a global <strong>Saturation & Contrast Curve</strong> boost.</span></li>
-                                </ul>
-                            </div>
-
-                            <div class="bg-black/30 border border-white/5 rounded-2xl p-6 hover:bg-black/40 transition-colors">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <div class="p-2 bg-purple-500/20 text-purple-400 rounded-lg">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-lg">Player Voxelization</h4>
-                                </div>
-                                <ul class="space-y-3 text-gray-400 text-sm">
-                                    <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">•</span> <span>The raytracer now dynamically maps all <strong>3D skin layers</strong> (Hat, Jacket, Sleeves, Pants) into the reflection grid.</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">•</span> <span>Added full support for <strong>Slim Skins (Alex model)</strong> with accurate 3-pixel arm shadows.</span></li>
-                                </ul>
-                            </div>
+                    
+                    <!-- Preview 3.0 -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3.0 (Major Update)</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 font-medium">Latest Release</span>
                         </div>
-
-                        <!-- Right Column -->
-                        <div class="space-y-6">
-                            <div class="bg-black/30 border border-white/5 rounded-2xl p-6 hover:bg-black/40 transition-colors">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <div class="p-2 bg-green-500/20 text-green-400 rounded-lg">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-lg">Critical Bug Fixes</h4>
-                                </div>
-                                <ul class="space-y-3 text-gray-400 text-sm">
-                                    <li class="flex items-start gap-2"><span class="text-green-400 mt-0.5">•</span> <span><strong>Neon Rain Reflections:</strong> Fixed an issue where voxel reflections bypassed rain dimming, causing water puddles to reflect full noon sunlight during thunderstorms.</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-green-400 mt-0.5">•</span> <span><strong>Z-Fighting on Sand:</strong> Removed procedural ground darkening noise that caused spatial upscaler flickering near water bodies.</span></li>
-                                </ul>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Cinematic Post-Processing</span>
+                                <p class="text-sm text-gray-500 mt-1">Added Anamorphic Lens Flares, Chromatic Aberration, a soft Vignette, and boosted Bloom intensity by 130% for a dreamy cinematic feel.</p>
                             </div>
-
-                            <div class="bg-black/30 border border-white/5 rounded-2xl p-6 hover:bg-black/40 transition-colors">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <div class="p-2 bg-purple-500/20 text-purple-400 rounded-lg">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-lg">Blocks & Rendering</h4>
-                                </div>
-                                <ul class="space-y-3 text-gray-400 text-sm">
-                                    <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">•</span> <span><strong>Flat Petals:</strong> All Modded 'Wildflowers' and 'Petals' now render flat against the terrain dynamically instead of generating cross-shaped voxel shadows.</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">•</span> <span>Soften direct sunlight intensity on terrain slightly.</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">•</span> <span>Removed generic film grain.</span></li>
-                                </ul>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Player Voxelization</span>
+                                <p class="text-sm text-gray-500 mt-1">The raytracer now maps all 3D skin layers (Hat, Jacket, etc.) into the grid, and fully supports Slim (Alex) skin shadows and reflections.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Neon Rain Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed voxel reflections bypassing rain dimming, stopping puddles from reflecting full noon sunlight during thunderstorms.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Z-Fighting on Sand</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed procedural ground darkening noise that caused spatial upscaler flickering near water bodies.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Flat Petals & Wildflowers</span>
+                                <p class="text-sm text-gray-500 mt-1">Modded Wildflowers and Petals now dynamically render flat against the terrain instead of generating cross-shaped voxel shadows.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Lighting & Clarity</span>
+                                <p class="text-sm text-gray-500 mt-1">Softened direct sunlight intensity on terrain and removed generic film grain for a cleaner image.</p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Preview 2 -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 2 (Hotfix)</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-gray-700/50 text-gray-400 border border-gray-700 font-medium">Previous Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">3D HUD Depth-Only Pass Crash Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Handled empty color attachment descriptors in Metal render passes, resolving a <code>NoSuchElementException</code> crash during <code>GameRenderer.integrate3DHudDepth</code>.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Block Corner & Edge Normal Reconstruction</span>
+                                <p class="text-sm text-gray-500 mt-1">Eliminated white highlights and normal flipping along block edges/corners by weighting axis-snapped normals with camera view alignment and filtering fallback normals to front-facing geometry.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glass Dual-Pass Z-Fighting Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Isolated glass reflection detection strictly to internal block voxels, eliminating z-fighting and flickering on solid walls adjacent to or facing glass.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Underwater Fog Boundary & Boosted God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">Volumetric atmospheric fog now halts cleanly at the water surface and is disabled underwater (fixing sea lantern scanlines), with significantly enhanced sun beam intensity through crevices and canopies.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Dual-Pass Translucent Deferred Shading</span>
+                                <p class="text-sm text-gray-500 mt-1">Split deferred lighting into pre/post-translucent passes. Looking through stained glass and water now reveals full deferred sun/point light shadows and VXAO instead of vanilla lighting!</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Translucent Glass & Water Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Restored and polished specular reflections for stained glass and water across the dual-pass pipeline.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Ray Traced Volumetric Fog Scattering</span>
+                                <p class="text-sm text-gray-500 mt-1">Ground-up GPU ray march implementation with Henyey-Greenstein scattering, Beer-Lambert absorption, and configurable ray steps.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Sun & Moon God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">True atmospheric crepuscular beams cast from the sun and moon directly through open sky, canopies, and window frames.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Colored Glass Volumetric Light Staining</span>
+                                <p class="text-sm text-gray-500 mt-1">Light beams traversing stained glass dynamically tint to the physical chromatic hue of each glass pane.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Linked Reflection Penumbra</span>
+                                <p class="text-sm text-gray-500 mt-1">Reflection soft shadows are dynamically tied to the world shadow penumbra slider (0 = razor sharp, >0 = realistic soft penumbra).</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Point Light Shadows in Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Full raytraced DDA point light shadows inside reflections with colored stained glass penetration.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Authentic Pixel-Art Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed blurry bilinear filtering from voxel reflections, restoring crisp, authentic Minecraft texture sampling.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Multiplayer Connection Crash Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Guarded deferred passes against uninitialized projection matrices during server login packets, preventing "Network Protocol Error" and screen freezes.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Cloud & Water Fog Dither Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Bounded volumetric fog raymarch to the active voxel radius (56 blocks), eliminating harsh checkerboard/stippled noise on clouds and distant water.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glass Reflection Transparency</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed reflection rays terminating on glass; rays now traverse transparent panes into the scenery beyond.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Balanced Volumetric Multipliers</span>
+                                <p class="text-sm text-gray-500 mt-1">Softened torch fog to a subtle warm haze, properly tuned lanterns and sea lanterns, and aligned handheld lights with hands.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">3rd-Person Player Shadow</span>
+                                <p class="text-sm text-gray-500 mt-1">Player models now cast accurate, fully-rendered shadows in 3rd-person perspective.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview 1 -->
+                    <div class="mb-10 text-left max-w-4xl mx-auto opacity-80">
+                        <h4 class="text-lg font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">Prisma 26.3 Preview 1</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Ported to Minecraft 26.3</span>
+                                <p class="text-sm text-gray-500 mt-1">Fully upgraded and ported the entire engine architecture to run on Minecraft 26.3.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Compute Shaders Upgrade</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced legacy fragment shaders with pure Compute Shaders for exponentially faster dispatch.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Analytical Volumetric Scattering</span>
+                                <p class="text-sm text-gray-500 mt-1">Added a new physically-based volumetric fog halo around light sources computed analytically along the ray.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">MetalFX Cascaded Spatial</span>
+                                <p class="text-sm text-gray-500 mt-1">Forced cascaded mode (MFX + EASU) with unified Base Render and Intermediate Scale sliders.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Laplacian Sharpening</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced old unsharp mask with a true contrast-adaptive reverse blur to combat MFX softness.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Unconstrained Shadow Casting</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed arbitrary analytical light limits. All point lights now cast fully accurate physical shadows.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Unified Penumbra Scaling</span>
+                                <p class="text-sm text-gray-500 mt-1">Giant 0-32 scalable ray slider now accurately governs both Sun and Point Light soft shadows.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Vanilla Bleed Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed hacky vanilla lightmap blending that caused glowing surfaces near torches.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Light Leakage & Collision</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed precision errors causing shadows to clip walls. Carpets no longer cast ground shadows.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Foliage Reflection Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Eliminated the neon green artifacting on transparent cross-blocks (grass/flowers) near water.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Settings UI Overhaul</span>
+                                <p class="text-sm text-gray-500 mt-1">Cleaned up dead settings, removed broken SDAA anti-aliasing, and grouped Shadow Quality sliders.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rev 1 / v2.5 / v2.6 -->
+                    <div class="text-left max-w-4xl mx-auto opacity-70">
+                        <h4 class="text-lg font-semibold text-gray-400 mb-6 border-b border-gray-800 pb-2">Revision 1 / v2.5 - v2.6</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-400 font-light">
+                            <div class="patch-item patch-new" style="--tw-shadow: 0 0 0;">
+                                <span class="text-gray-300 font-medium">Procedural Vogel Disk</span>
+                                <p class="text-sm text-gray-500 mt-1">Implemented procedural vogel disk sampling for soft shadows, drastically reducing noise.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-gray-300 font-medium">Analytical Point Lights</span>
+                                <p class="text-sm text-gray-500 mt-1">Initial introduction of analytical shadow casting for point lights overriding block maps.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-gray-300 font-medium">MSL Shader Rewrite</span>
+                                <p class="text-sm text-gray-500 mt-1">Massive backend rewrite for deferred and post-process passes natively in Metal Shading Language.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-gray-300 font-medium">Compilation Errors</span>
+                                <p class="text-sm text-gray-500 mt-1">Resolved multiple strict compiler warnings, unused variables, and scope leaks in MSL.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
-    
     </section>
 
     <!-- Footer -->
