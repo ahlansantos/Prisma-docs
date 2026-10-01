@@ -3,35 +3,769 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prisma - Under Maintenance</title>
+    <title>Prisma - The Newest Native Ray Traced Voxel Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            background-color: #0d0d0d;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg-color: #030303;
+            --glass-bg: rgba(20, 20, 20, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --apple-blur: blur(24px);
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: -webkit-linear-gradient(45deg, #00f2fe, #4facfe);
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: #f5f5f7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* The Prisma Spectrum Glow Effect */
+        .prisma-glow {
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 60%);
+            z-index: -1;
+            filter: blur(60px);
+            animation: pulse-glow 10s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+        
+        .prisma-spectrum {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 600px;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--bg-color) 100%), 
+                        linear-gradient(90deg, rgba(255,59,48,0.1) 0%, rgba(255,149,0,0.1) 20%, rgba(255,204,0,0.1) 40%, rgba(52,199,89,0.1) 60%, rgba(0,122,255,0.1) 80%, rgba(175,82,222,0.1) 100%);
+            z-index: -2;
+            mask-image: radial-gradient(ellipse at top, black 0%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at top, black 0%, transparent 80%);
+            pointer-events: none;
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.5; transform: translateX(-50%) scale(0.95); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+        }
+
+        /* Chromatic text effect */
+        .chromatic-text {
+            background: linear-gradient(90deg, #ff3b30, #ff9500, #ffcc00, #34c759, #007aff, #af52de, #ff3b30);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: shine 6s linear infinite;
         }
-        p {
-            font-size: 1.2rem;
-            color: #a0a0a0;
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* Apple-style Glassmorphism */
+        .apple-glass {
+            background: var(--glass-bg);
+            backdrop-filter: var(--apple-blur);
+            -webkit-backdrop-filter: var(--apple-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .apple-glass:hover {
+            background: rgba(30, 30, 30, 0.5);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Subtle gradient borders for cards */
+        .gradient-border-card {
+            position: relative;
+            background: var(--bg-color);
+            border-radius: 24px;
+            z-index: 1;
+        }
+        
+        .gradient-border-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.05));
+            z-index: -1;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        /* Hero Icon */
+        .hero-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-icon-bg-blur {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+            filter: blur(25px);
+            z-index: -1;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-icon {
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.15));
+            -webkit-mask-image: radial-gradient(circle at center, black 55%, transparent 95%);
+            mask-image: radial-gradient(circle at center, black 55%, transparent 95%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .hero-icon:hover {
+            transform: scale(1.08) rotate(3deg);
+        }
+
+        /* Beautiful Badge */
+        .apple-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.02);
+        }
+
+        /* Patch Notes Styling */
+        .patch-notes-container {
+            position: relative;
+        }
+        .patch-notes-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+        .patch-item {
+            position: relative;
+            padding-left: 1.75rem;
+        }
+        .patch-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .patch-item:hover::before {
+            transform: scale(1.35);
+        }
+        .patch-new::before { background: #34c759; box-shadow: 0 0 10px rgba(52, 199, 89, 0.9), 0 0 2px #fff; }
+        .patch-update::before { background: #0a84ff; box-shadow: 0 0 10px rgba(10, 132, 255, 0.9), 0 0 2px #fff; }
+        .patch-fix::before { background: #ff9f0a; box-shadow: 0 0 10px rgba(255, 159, 10, 0.9), 0 0 2px #fff; }
+
+        .patch-legend {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.4rem 0.85rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 9999px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+        .patch-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            letter-spacing: 0.01em;
+            transition: all 0.2s ease;
+        }
+        .patch-legend-new {
+            color: #4cd964;
+            background: rgba(52, 199, 89, 0.12);
+            border: 1px solid rgba(52, 199, 89, 0.28);
+        }
+        .patch-legend-update {
+            color: #5ac8fa;
+            background: rgba(10, 132, 255, 0.12);
+            border: 1px solid rgba(10, 132, 255, 0.28);
+        }
+        .patch-legend-fix {
+            color: #ffb340;
+            background: rgba(255, 159, 10, 0.12);
+            border: 1px solid rgba(255, 159, 10, 0.28);
         }
     </style>
 </head>
-<body>
-    <h1>Prisma is Under Maintenance</h1>
-    <p>We are currently updating our systems and shaders. Please check back later!</p>
+<body class="antialiased min-h-screen flex flex-col items-center">
+
+    <div class="prisma-spectrum"></div>
+    <div class="prisma-glow"></div>
+
+    <nav class="w-full max-w-7xl py-6 px-8 flex justify-between items-center z-10">
+        <div class="flex items-center gap-3">
+            <img src="icon.png" alt="Prisma Logo" class="w-8 h-8 opacity-90" style="-webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 100%);">
+            <span class="font-bold text-xl tracking-tight text-white">Prisma</span>
+        </div>
+        <div class="flex items-center gap-8 text-sm font-medium text-gray-400">
+            <a href="#features" class="hover:text-white transition-colors">Features</a>
+            <a href="https://github.com/ahlansantos" class="hover:text-white transition-colors">GitHub</a>
+            <a href="#download" class="px-5 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-colors shadow-lg shadow-white/10">Download</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-7xl flex-grow flex flex-col items-center justify-center text-center px-4 z-10 mt-16 mb-24">
+        
+        <div class="mb-10 relative hero-icon-container">
+            <div class="hero-icon-bg-blur"></div>
+            <img src="icon.png" alt="Prisma Logo" class="w-36 h-36 mx-auto hero-icon">
+        </div>
+
+        <div class="apple-badge inline-flex items-center gap-3 px-5 py-2 rounded-full text-xs font-semibold text-gray-200 mb-8 tracking-wide">
+            <div class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </div>
+            PRISMA 26.3 PREVIEW 2 HOTFIX IS LIVE
+        </div>
+
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-6 text-white leading-[1.05] max-w-5xl">
+            The Newest Native Ray Traced Voxel Engine <br>
+            <span class="chromatic-text">for Minecraft macOS.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl font-light leading-relaxed">
+            Powered by Apple Metal. Built for graphics enthusiasts and developers demanding pure performance.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-5">
+            <a href="#download" class="px-8 py-4 bg-white text-black font-semibold text-lg rounded-2xl hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+                Download Prisma
+            </a>
+            <a href="#gallery" class="px-8 py-4 bg-transparent border border-gray-700 text-white font-semibold text-lg rounded-2xl hover:bg-gray-800 transition-transform hover:scale-105 active:scale-95">
+                View Gallery
+            </a>
+        </div>
+    </main>
+
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="w-full max-w-[90rem] mx-auto px-4 py-16 z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">See it in action.</h2>
+            <p class="text-lg text-gray-400 font-light">Screenshots captured directly on macOS.</p>
+        </div>
+        
+        <div class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory" style="scrollbar-width: none; -ms-overflow-style: none;">
+            <!-- Hide webkit scrollbar -->
+            <style>#gallery div::-webkit-scrollbar { display: none; }</style>
+            
+            <div class="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw]">
+                <img src="pictures/pic3.png" class="w-full h-auto rounded-3xl border border-gray-800 shadow-2xl object-cover" alt="Prisma Screenshot 3">
+            </div>
+            <div class="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw]">
+                <img src="pictures/pic4.png" class="w-full h-auto rounded-3xl border border-gray-800 shadow-2xl object-cover" alt="Prisma Screenshot 4">
+            </div>
+            <div class="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw]">
+                <img src="pictures/pic5.png" class="w-full h-auto rounded-3xl border border-gray-800 shadow-2xl object-cover" alt="Prisma Screenshot 5">
+            </div>
+            <div class="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw]">
+                <img src="pictures/pic6.png" class="w-full h-auto rounded-3xl border border-gray-800 shadow-2xl object-cover" alt="Prisma Screenshot 6">
+            </div>
+            <div class="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw]">
+                <img src="pictures/pic1.png" class="w-full h-auto rounded-3xl border border-gray-800 shadow-2xl object-cover" alt="Prisma Screenshot 1">
+            </div>
+            <div class="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw]">
+                <img src="pictures/pic2.png" class="w-full h-auto rounded-3xl border border-gray-800 shadow-2xl object-cover" alt="Prisma Screenshot 2">
+            </div>
+        </div>
+        
+        <div class="mt-8 text-center px-4 max-w-2xl mx-auto">
+            <p class="text-sm text-gray-500 font-light tracking-wide">
+                * All screenshots were captured on a base <span class="text-gray-300 font-medium">M1 MacBook Air</span> at <span class="text-gray-300 font-medium">1050p</span> (Ultra Settings), running at an average of <span class="text-red-400/80 font-medium">5-10 FPS</span>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Beautiful Features Section -->
+    <section id="features" class="w-full max-w-7xl mx-auto px-4 py-24 z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Unleash the Mac.</h2>
+            <p class="text-xl text-gray-400 font-light">Advanced rendering architecture designed seamlessly for Apple Silicon.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="apple-glass p-10 flex flex-col relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-500"></div>
+                <div class="w-14 h-14 rounded-2xl bg-black/50 border border-gray-700 flex items-center justify-center mb-8 shadow-inner">
+                    <svg class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">Native Voxel Ray Tracing</h3>
+                <p class="text-gray-400 text-base leading-relaxed font-light">
+                    Real-time, flawless access to a <span class="text-gray-200 font-medium">3D Voxel Grid</span> stored directly on the GPU. Powered by heavily optimized DDA ray marching with comprehensive reflection and lighting fixes.
+                </p>
+            </div>
+
+            <div class="apple-glass p-10 flex flex-col relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-green-500/10 rounded-full blur-3xl group-hover:bg-green-500/20 transition-all duration-500"></div>
+                <div class="w-14 h-14 rounded-2xl bg-black/50 border border-gray-700 flex items-center justify-center mb-8 shadow-inner">
+                    <svg class="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">MetalFX & EASU Cascaded Upscaling</h3>
+                <p class="text-gray-400 text-base leading-relaxed font-light">
+                    Run native resolutions seamlessly. Prisma enforces <span class="text-gray-200 font-medium">Cascaded Spatial</span> upscaling using Apple MetalFX and AMD EASU, coupled with contrast-adaptive Laplacian Sharpening.
+                </p>
+            </div>
+
+            <div class="apple-glass p-10 flex flex-col relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all duration-500"></div>
+                <div class="w-14 h-14 rounded-2xl bg-black/50 border border-gray-700 flex items-center justify-center mb-8 shadow-inner">
+                    <svg class="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">Unconstrained Penumbra Shadows</h3>
+                <p class="text-gray-400 text-base leading-relaxed font-light">
+                    Every light source casts physically accurate shadows. Leveraging procedural Vogel disk sampling, penumbra shadows scale flawlessly up to <span class="text-gray-200 font-medium">32 rays per light</span>.
+                </p>
+            </div>
+
+            <div class="apple-glass p-10 flex flex-col relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-500"></div>
+                <div class="w-14 h-14 rounded-2xl bg-black/50 border border-gray-700 flex items-center justify-center mb-8 shadow-inner">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">Open Shader API</h3>
+                <p class="text-gray-400 text-base leading-relaxed font-light">
+                    <span class="text-gray-200 font-medium">PrismaShaderAPI</span> offers an elegant hook for third-party modders. Register custom MSL passes, inject custom uniforms, and control the underlying Metal pipeline.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Developers Area -->
+    <section id="developers" class="w-full max-w-7xl mx-auto px-4 py-20 z-10">
+        <div class="gradient-border-card p-1">
+            <div class="apple-glass p-12 md:p-16 rounded-[23px] flex flex-col md:flex-row items-center gap-10">
+                <div class="flex-1 text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Built for Shader Developers.</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed font-light mb-6">
+                        Using the brand new <strong>PrismaShaderAPI</strong>, developers can inject custom Metal Shading Language (MSL) passes, bind custom uniforms, and interact directly with the hardware Voxel Grid. No more hacky GLSL translations.
+                    </p>
+                    <a href="https://discord.gg/EtdRVPtxMA" class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition-colors">
+                        Read the Documentation in our discord! 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="flex-1 w-full bg-black/60 rounded-2xl border border-gray-800 p-6 font-mono text-sm text-green-400 overflow-x-auto shadow-inner">
+<pre><code>#include &lt;metal_stdlib&gt;
+using namespace metal;
+
+// Implement PrismaShaderAPI in Java
+PrismaShaderAPI.getInstance().registerCustomMetalPass(
+    new ResourceLocation("mymod", "custom_bloom"),
+    "mymod:shaders/bloom.metal"
+);
+
+// Native access in your MSL shader
+kernel void custom_bloom(
+    device const uint2* voxelGrid [[buffer(0)]],
+    constant VoxelUniforms& u [[buffer(1)]]
+) {
+    // Pure MSL execution
+    float3 shadow = traceDdaShadowRay(...);
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download & Premium Patch Notes Section -->
+    <section id="download" class="w-full max-w-5xl mx-auto px-4 py-24 z-10">
+        <div class="gradient-border-card p-1">
+            <div class="apple-glass p-10 md:p-16 rounded-[23px] flex flex-col items-center">
+                
+                <h2 class="text-4xl font-bold mb-4 text-white text-center tracking-tight">Download Prisma</h2>
+                <p class="text-gray-400 mb-10 text-center text-lg max-w-xl font-light">
+                    Ready to use. Drop it into your Fabric mods folder and experience native ray tracing on macOS.
+                </p>
+                
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-6">
+                <!-- Download Button -->
+                <a href="downloads/prisma-26.3-preview.2-hotfix.jar" class="group relative flex items-center justify-center gap-4 px-10 py-5 bg-white text-black font-semibold text-lg rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto">
+                    <div class="absolute inset-0 rounded-2xl bg-white blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+
+                    <span class="relative z-10">Download Preview 2 Hotfix</span>
+                </a>
+                
+                <!-- Discord Button -->
+                <a href="https://discord.gg/EtdRVPtxMA" target="_blank" class="group relative flex items-center justify-center gap-4 px-10 py-5 bg-transparent border border-gray-600 text-white font-semibold text-lg rounded-2xl transition-all hover:bg-gray-800/50 hover:border-gray-500 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto">
+                    <svg class="w-6 h-6 relative z-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                    <span class="relative z-10">Join our Discord</span>
+                </a>
+            </div>
+                
+                <div class="flex items-start gap-3 max-w-lg mb-16 p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 text-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <p class="text-xs text-orange-200/70 font-light leading-relaxed">
+                        <strong class="text-orange-300 font-medium">Transparency Note:</strong> Prisma is highly demanding. On base models (like the M1 MacBook Air), performance is heavily impacted unless you set render resolution scaling to around <strong>25%–45%</strong> with quality settings configured to <strong>Medium</strong>.
+                    </p>
+                </div>
+
+                <!-- Patch Notes - Prisma Style -->
+                <div class="w-full patch-notes-container pt-12">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">
+                        <span class="chromatic-text">Full Changelog</span>
+                    </h3>
+
+                    <!-- Apple-style Patch Legend -->
+                    <div class="flex justify-center mb-10">
+                        <div class="patch-legend">
+                            <span class="text-xs text-gray-400 font-normal mr-1">Legend:</span>
+                            <div class="patch-legend-item patch-legend-new">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                <span>New Feature</span>
+                            </div>
+                            <div class="patch-legend-item patch-legend-update">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                <span>Improvement</span>
+                            </div>
+                            <div class="patch-legend-item patch-legend-fix">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>Bug Fix</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Preview 3 — NEW -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 font-medium">Latest Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Luma-Preserving Filmic Tone Mapping</span>
+                                <p class="text-sm text-gray-500 mt-1">Luminance-only curve that preserves 100% of real RGB chromaticity. Eliminates the grey, washed-out veil while keeping lush green grass, deep blue skies, and rich golden sunsets with an open, uncrushed shadow toe.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Physical Vertical Water Depth</span>
+                                <p class="text-sm text-gray-500 mt-1">Water depth is now measured physically by counting water voxels straight down to the riverbed/seabed. Shallow water (1–2 blocks) is crystal clear, turquoise, and the seabed is 100% visible regardless of viewing distance. Deep ocean naturally fades into midnight navy.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Water Shoreline Z-Fighting Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Strictly isolated fluid shading to real water voxels, completely eliminating z-fighting and color bleeding on adjacent sand and dirt shorelines.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Flattened Cumulus Clouds & Lunar Illumination</span>
+                                <p class="text-sm text-gray-500 mt-1">Reduced vertical cloud height from 280u down to ~100u, removing monolithic towers while preserving blocky cumulus volume. At night, the moon dynamically illuminates clouds with a brilliant silver lining facing the moon.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">World-Space Locked 100% Ray Traced God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">Maintained 100% real DDA ray-traced compute fog while locking sampling slices to world-space planes. Volumetric light beams stay rock-solid in 3D space when walking or looking around, with dual-lobe scattering for side visibility.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">1050p Block Edge White Lines Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Dynamically scaled the depth derivative threshold by the texel world footprint, completely curing white outline artifacts on block corners at 1050p, 900p, and lower resolutions.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Distant Terrain Smooth Transition (7-Chunk Ring Fix)</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced the harsh CSM boundary cutoff with a continuous smoothstep transition, eliminating the black ring and flickering terrain shadows at the ~7-chunk voxel boundary.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Gerstner Directional Ocean Waves</span>
+                                <p class="text-sm text-gray-500 mt-1">5 directional ocean swells replace isotropic noise, creating authentic parallel wave crests and troughs with dynamic Fresnel reflection modulation.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Max Point Lights Slider</span>
+                                <p class="text-sm text-gray-500 mt-1">New UI slider (16–256) to control how many point lights are processed. Mansion/dungeon maps can now unlock 128 or 256 lights to cover large areas fully.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glowstone & Froglight Fog Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed self-occlusion bug where DDA shadow rays started inside solid emissive blocks, causing glowstone and froglights to emit zero volumetric fog. Shadow target is now correctly offset.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">3D Spatial Volumetric Light Volumes</span>
+                                <p class="text-sm text-gray-500 mt-1">Volumetric fog features dual-component scattering: directional HG forward lobe + omnidirectional spatial radiance. Hallways and corridors fill with volumetric light from any viewing angle.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Retina MetalFX Auto-Detect</span>
+                                <p class="text-sm text-gray-500 mt-1">Prisma automatically selects the best MetalFX render scale for your display on first launch: 0.40 for M4 Max native 3.4K, 0.50 for standard Retina, 0.75 for 1080p. Overridable from settings.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- Preview 3.0 -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3.0 (Major Update)</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 font-medium">Latest Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Cinematic Post-Processing</span>
+                                <p class="text-sm text-gray-500 mt-1">Added Anamorphic Lens Flares, Chromatic Aberration, a soft Vignette, and boosted Bloom intensity by 130% for a dreamy cinematic feel.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Player Voxelization</span>
+                                <p class="text-sm text-gray-500 mt-1">The raytracer now maps all 3D skin layers (Hat, Jacket, etc.) into the grid, and fully supports Slim (Alex) skin shadows and reflections.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Neon Rain Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed voxel reflections bypassing rain dimming, stopping puddles from reflecting full noon sunlight during thunderstorms.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Z-Fighting on Sand</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed procedural ground darkening noise that caused spatial upscaler flickering near water bodies.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Flat Petals & Wildflowers</span>
+                                <p class="text-sm text-gray-500 mt-1">Modded Wildflowers and Petals now dynamically render flat against the terrain instead of generating cross-shaped voxel shadows.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Lighting & Clarity</span>
+                                <p class="text-sm text-gray-500 mt-1">Softened direct sunlight intensity on terrain and removed generic film grain for a cleaner image.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                                        <!-- Preview 3 -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 font-medium shadow-[0_0_10px_rgba(59,130,246,0.2)]">Latest Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">MetalFX Temporal Scaler</span>
+                                <p class="text-sm text-gray-500 mt-1">Upgraded the MetalFX Spatial upscaler to <b>MetalFX Temporal</b> using native engine motion vectors, completely eliminating path-tracing noise and stabilizing the image.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">VX RTAO (Ray-Traced Ambient Occlusion)</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced the old static Double AO with true Voxel Ray-Traced Ambient Occlusion. Features soft occlusion that properly passes through slabs, leaves, and tall grass.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">VX RTGI (Voxel Ray-Traced Global Illumination)</span>
+                                <p class="text-sm text-gray-500 mt-1">Restored 1-bounce Global Illumination! Fully separated into its own UI toggle. It now perfectly interacts with MetalFX Temporal for noise-free colored bounces.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Player Shadow (3D Layers & Slim Models)</span>
+                                <p class="text-sm text-gray-500 mt-1">Player shadows now perfectly support 3D outer skin layers (jackets, hats) and correctly adapt to Slim (Alex) vs Classic (Steve) arm models natively.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Physical Water Raytracing</span>
+                                <p class="text-sm text-gray-500 mt-1">Water and fluids are now correctly inserted into the 3D Voxel Grid, allowing them to cast volumetric shadows, reflect in mirrors, and block ambient light.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Glossy / Blurry Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Quartz, Prismarine, and Sea Lanterns now feature beautiful frosted/glossy ray-traced reflections.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">GI Light Leaks Fixed</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed artificial ambient light injection. Pitch-black rooms no longer leak phantom Global Illumination from dark walls.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Motion Vector Artifacts Fixed</span>
+                                <p class="text-sm text-gray-500 mt-1">Inverted and correctly mapped motion vectors to Apple's pixel-space format, fixing all edge smearing and Chromatic Aberration ghosting.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview 2 -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 2 (Hotfix)</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-gray-700/50 text-gray-400 border border-gray-700 font-medium">Previous Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">3D HUD Depth-Only Pass Crash Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Handled empty color attachment descriptors in Metal render passes, resolving a <code>NoSuchElementException</code> crash during <code>GameRenderer.integrate3DHudDepth</code>.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Block Corner & Edge Normal Reconstruction</span>
+                                <p class="text-sm text-gray-500 mt-1">Eliminated white highlights and normal flipping along block edges/corners by weighting axis-snapped normals with camera view alignment and filtering fallback normals to front-facing geometry.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glass Dual-Pass Z-Fighting Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Isolated glass reflection detection strictly to internal block voxels, eliminating z-fighting and flickering on solid walls adjacent to or facing glass.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Underwater Fog Boundary & Boosted God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">Volumetric atmospheric fog now halts cleanly at the water surface and is disabled underwater (fixing sea lantern scanlines), with significantly enhanced sun beam intensity through crevices and canopies.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Dual-Pass Translucent Deferred Shading</span>
+                                <p class="text-sm text-gray-500 mt-1">Split deferred lighting into pre/post-translucent passes. Looking through stained glass and water now reveals full deferred sun/point light shadows and VXAO instead of vanilla lighting!</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Translucent Glass & Water Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Restored and polished specular reflections for stained glass and water across the dual-pass pipeline.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Ray Traced Volumetric Fog Scattering</span>
+                                <p class="text-sm text-gray-500 mt-1">Ground-up GPU ray march implementation with Henyey-Greenstein scattering, Beer-Lambert absorption, and configurable ray steps.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Sun & Moon God Rays</span>
+                                <p class="text-sm text-gray-500 mt-1">True atmospheric crepuscular beams cast from the sun and moon directly through open sky, canopies, and window frames.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Colored Glass Volumetric Light Staining</span>
+                                <p class="text-sm text-gray-500 mt-1">Light beams traversing stained glass dynamically tint to the physical chromatic hue of each glass pane.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Linked Reflection Penumbra</span>
+                                <p class="text-sm text-gray-500 mt-1">Reflection soft shadows are dynamically tied to the world shadow penumbra slider (0 = razor sharp, >0 = realistic soft penumbra).</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Point Light Shadows in Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Full raytraced DDA point light shadows inside reflections with colored stained glass penetration.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Authentic Pixel-Art Reflections</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed blurry bilinear filtering from voxel reflections, restoring crisp, authentic Minecraft texture sampling.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Multiplayer Connection Crash Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Guarded deferred passes against uninitialized projection matrices during server login packets, preventing "Network Protocol Error" and screen freezes.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Cloud & Water Fog Dither Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Bounded volumetric fog raymarch to the active voxel radius (56 blocks), eliminating harsh checkerboard/stippled noise on clouds and distant water.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Glass Reflection Transparency</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed reflection rays terminating on glass; rays now traverse transparent panes into the scenery beyond.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Balanced Volumetric Multipliers</span>
+                                <p class="text-sm text-gray-500 mt-1">Softened torch fog to a subtle warm haze, properly tuned lanterns and sea lanterns, and aligned handheld lights with hands.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">3rd-Person Player Shadow</span>
+                                <p class="text-sm text-gray-500 mt-1">Player models now cast accurate, fully-rendered shadows in 3rd-person perspective.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview 1 -->
+                    <div class="mb-10 text-left max-w-4xl mx-auto opacity-80">
+                        <h4 class="text-lg font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">Prisma 26.3 Preview 1</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Ported to Minecraft 26.3</span>
+                                <p class="text-sm text-gray-500 mt-1">Fully upgraded and ported the entire engine architecture to run on Minecraft 26.3.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Compute Shaders Upgrade</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced legacy fragment shaders with pure Compute Shaders for exponentially faster dispatch.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Analytical Volumetric Scattering</span>
+                                <p class="text-sm text-gray-500 mt-1">Added a new physically-based volumetric fog halo around light sources computed analytically along the ray.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">MetalFX Cascaded Spatial</span>
+                                <p class="text-sm text-gray-500 mt-1">Forced cascaded mode (MFX + EASU) with unified Base Render and Intermediate Scale sliders.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Laplacian Sharpening</span>
+                                <p class="text-sm text-gray-500 mt-1">Replaced old unsharp mask with a true contrast-adaptive reverse blur to combat MFX softness.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Unconstrained Shadow Casting</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed arbitrary analytical light limits. All point lights now cast fully accurate physical shadows.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Unified Penumbra Scaling</span>
+                                <p class="text-sm text-gray-500 mt-1">Giant 0-32 scalable ray slider now accurately governs both Sun and Point Light soft shadows.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Vanilla Bleed Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Removed hacky vanilla lightmap blending that caused glowing surfaces near torches.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Light Leakage & Collision</span>
+                                <p class="text-sm text-gray-500 mt-1">Fixed precision errors causing shadows to clip walls. Carpets no longer cast ground shadows.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Foliage Reflection Fix</span>
+                                <p class="text-sm text-gray-500 mt-1">Eliminated the neon green artifacting on transparent cross-blocks (grass/flowers) near water.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Settings UI Overhaul</span>
+                                <p class="text-sm text-gray-500 mt-1">Cleaned up dead settings, removed broken SDAA anti-aliasing, and grouped Shadow Quality sliders.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rev 1 / v2.5 / v2.6 -->
+                    <div class="text-left max-w-4xl mx-auto opacity-70">
+                        <h4 class="text-lg font-semibold text-gray-400 mb-6 border-b border-gray-800 pb-2">Revision 1 / v2.5 - v2.6</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-400 font-light">
+                            <div class="patch-item patch-new" style="--tw-shadow: 0 0 0;">
+                                <span class="text-gray-300 font-medium">Procedural Vogel Disk</span>
+                                <p class="text-sm text-gray-500 mt-1">Implemented procedural vogel disk sampling for soft shadows, drastically reducing noise.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-gray-300 font-medium">Analytical Point Lights</span>
+                                <p class="text-sm text-gray-500 mt-1">Initial introduction of analytical shadow casting for point lights overriding block maps.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-gray-300 font-medium">MSL Shader Rewrite</span>
+                                <p class="text-sm text-gray-500 mt-1">Massive backend rewrite for deferred and post-process passes natively in Metal Shading Language.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-gray-300 font-medium">Compilation Errors</span>
+                                <p class="text-sm text-gray-500 mt-1">Resolved multiple strict compiler warnings, unused variables, and scope leaks in MSL.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full py-10 text-center text-gray-600 text-sm mt-auto z-10">
+        <p>Prisma is an independent engine. Not affiliated with Mojang AB or Apple Inc.</p>
+    </footer>
+
 </body>
 </html>
