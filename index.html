@@ -493,8 +493,16 @@ kernel void custom_bloom(
                                 <p class="text-sm text-gray-500 mt-1">The raytracer now maps all 3D skin layers (Hat, Jacket, etc.) into the grid, and fully supports Slim (Alex) vs Classic (Steve) skin shadows and reflections.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Cinematic Post-Processing</span>
-                                <p class="text-sm text-gray-500 mt-1">Added Anamorphic Lens Flares, Chromatic Aberration, a soft Vignette, and boosted Bloom intensity by 130% for a dreamy cinematic feel.</p>
+                                <span class="text-white font-medium">Post-Processing Control</span>
+                                <p class="text-sm text-gray-500 mt-1">Added a dedicated UI tab with sliders to precisely adjust Lens Flare, Vignette, and Chromatic Aberration intensity.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">RTGI Point Light Injection</span>
+                                <p class="text-sm text-gray-500 mt-1">Point lights (torches, lanterns) now accurately bounce and contribute fully to the Global Illumination raymarcher, curing dark rooms with up to 32 concurrent lights per bounce.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">Strict Profile Presets</span>
+                                <p class="text-sm text-gray-500 mt-1">M1 Air Low strictly disables VXGI and enforces a baseline 35-60 FPS performance without rogue resolution overrides.</p>
                             </div>
                             <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Physical Water Raytracing & Depth</span>
