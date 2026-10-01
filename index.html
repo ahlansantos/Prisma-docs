@@ -469,104 +469,11 @@ kernel void custom_bloom(
                         </div>
                     </div>
                     
-                    <!-- Preview 3 — NEW -->
+                    <!-- Preview 3 -->
                     <div class="mb-12 text-left max-w-4xl mx-auto">
                         <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
                             <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3</h4>
                             <span class="text-xs px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 font-medium">Latest Release</span>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Luma-Preserving Filmic Tone Mapping</span>
-                                <p class="text-sm text-gray-500 mt-1">Luminance-only curve that preserves 100% of real RGB chromaticity. Eliminates the grey, washed-out veil while keeping lush green grass, deep blue skies, and rich golden sunsets with an open, uncrushed shadow toe.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Physical Vertical Water Depth</span>
-                                <p class="text-sm text-gray-500 mt-1">Water depth is now measured physically by counting water voxels straight down to the riverbed/seabed. Shallow water (1–2 blocks) is crystal clear, turquoise, and the seabed is 100% visible regardless of viewing distance. Deep ocean naturally fades into midnight navy.</p>
-                            </div>
-                            <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">Water Shoreline Z-Fighting Fix</span>
-                                <p class="text-sm text-gray-500 mt-1">Strictly isolated fluid shading to real water voxels, completely eliminating z-fighting and color bleeding on adjacent sand and dirt shorelines.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Flattened Cumulus Clouds & Lunar Illumination</span>
-                                <p class="text-sm text-gray-500 mt-1">Reduced vertical cloud height from 280u down to ~100u, removing monolithic towers while preserving blocky cumulus volume. At night, the moon dynamically illuminates clouds with a brilliant silver lining facing the moon.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">World-Space Locked 100% Ray Traced God Rays</span>
-                                <p class="text-sm text-gray-500 mt-1">Maintained 100% real DDA ray-traced compute fog while locking sampling slices to world-space planes. Volumetric light beams stay rock-solid in 3D space when walking or looking around, with dual-lobe scattering for side visibility.</p>
-                            </div>
-                            <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">1050p Block Edge White Lines Fix</span>
-                                <p class="text-sm text-gray-500 mt-1">Dynamically scaled the depth derivative threshold by the texel world footprint, completely curing white outline artifacts on block corners at 1050p, 900p, and lower resolutions.</p>
-                            </div>
-                            <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">Distant Terrain Smooth Transition (7-Chunk Ring Fix)</span>
-                                <p class="text-sm text-gray-500 mt-1">Replaced the harsh CSM boundary cutoff with a continuous smoothstep transition, eliminating the black ring and flickering terrain shadows at the ~7-chunk voxel boundary.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Gerstner Directional Ocean Waves</span>
-                                <p class="text-sm text-gray-500 mt-1">5 directional ocean swells replace isotropic noise, creating authentic parallel wave crests and troughs with dynamic Fresnel reflection modulation.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Max Point Lights Slider</span>
-                                <p class="text-sm text-gray-500 mt-1">New UI slider (16–256) to control how many point lights are processed. Mansion/dungeon maps can now unlock 128 or 256 lights to cover large areas fully.</p>
-                            </div>
-                            <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">Glowstone & Froglight Fog Fix</span>
-                                <p class="text-sm text-gray-500 mt-1">Fixed self-occlusion bug where DDA shadow rays started inside solid emissive blocks, causing glowstone and froglights to emit zero volumetric fog. Shadow target is now correctly offset.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">3D Spatial Volumetric Light Volumes</span>
-                                <p class="text-sm text-gray-500 mt-1">Volumetric fog features dual-component scattering: directional HG forward lobe + omnidirectional spatial radiance. Hallways and corridors fill with volumetric light from any viewing angle.</p>
-                            </div>
-                            <div class="patch-item patch-update">
-                                <span class="text-white font-medium">Retina MetalFX Auto-Detect</span>
-                                <p class="text-sm text-gray-500 mt-1">Prisma automatically selects the best MetalFX render scale for your display on first launch: 0.40 for M4 Max native 3.4K, 0.50 for standard Retina, 0.75 for 1080p. Overridable from settings.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <!-- Preview 3.0 -->
-                    <div class="mb-12 text-left max-w-4xl mx-auto">
-                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
-                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3.0 (Major Update)</h4>
-                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 font-medium">Latest Release</span>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Cinematic Post-Processing</span>
-                                <p class="text-sm text-gray-500 mt-1">Added Anamorphic Lens Flares, Chromatic Aberration, a soft Vignette, and boosted Bloom intensity by 130% for a dreamy cinematic feel.</p>
-                            </div>
-                            <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Player Voxelization</span>
-                                <p class="text-sm text-gray-500 mt-1">The raytracer now maps all 3D skin layers (Hat, Jacket, etc.) into the grid, and fully supports Slim (Alex) skin shadows and reflections.</p>
-                            </div>
-                            <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">Neon Rain Reflections</span>
-                                <p class="text-sm text-gray-500 mt-1">Fixed voxel reflections bypassing rain dimming, stopping puddles from reflecting full noon sunlight during thunderstorms.</p>
-                            </div>
-                            <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">Z-Fighting on Sand</span>
-                                <p class="text-sm text-gray-500 mt-1">Removed procedural ground darkening noise that caused spatial upscaler flickering near water bodies.</p>
-                            </div>
-                            <div class="patch-item patch-update">
-                                <span class="text-white font-medium">Flat Petals & Wildflowers</span>
-                                <p class="text-sm text-gray-500 mt-1">Modded Wildflowers and Petals now dynamically render flat against the terrain instead of generating cross-shaped voxel shadows.</p>
-                            </div>
-                            <div class="patch-item patch-update">
-                                <span class="text-white font-medium">Lighting & Clarity</span>
-                                <p class="text-sm text-gray-500 mt-1">Softened direct sunlight intensity on terrain and removed generic film grain for a cleaner image.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                                        <!-- Preview 3 -->
-                    <div class="mb-12 text-left max-w-4xl mx-auto">
-                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
-                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3</h4>
-                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 font-medium shadow-[0_0_10px_rgba(59,130,246,0.2)]">Latest Release</span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
                             <div class="patch-item patch-new">
@@ -582,25 +489,46 @@ kernel void custom_bloom(
                                 <p class="text-sm text-gray-500 mt-1">Restored 1-bounce Global Illumination! Fully separated into its own UI toggle. It now perfectly interacts with MetalFX Temporal for noise-free colored bounces.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Player Shadow (3D Layers & Slim Models)</span>
-                                <p class="text-sm text-gray-500 mt-1">Player shadows now perfectly support 3D outer skin layers (jackets, hats) and correctly adapt to Slim (Alex) vs Classic (Steve) arm models natively.</p>
+                                <span class="text-white font-medium">Player Voxelization & Shadow (3D Layers & Slim Models)</span>
+                                <p class="text-sm text-gray-500 mt-1">The raytracer now maps all 3D skin layers (Hat, Jacket, etc.) into the grid, and fully supports Slim (Alex) vs Classic (Steve) skin shadows and reflections.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">Physical Water Raytracing</span>
-                                <p class="text-sm text-gray-500 mt-1">Water and fluids are now correctly inserted into the 3D Voxel Grid, allowing them to cast volumetric shadows, reflect in mirrors, and block ambient light.</p>
+                                <span class="text-white font-medium">Cinematic Post-Processing</span>
+                                <p class="text-sm text-gray-500 mt-1">Added Anamorphic Lens Flares, Chromatic Aberration, a soft Vignette, and boosted Bloom intensity by 130% for a dreamy cinematic feel.</p>
+                            </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Physical Water Raytracing & Depth</span>
+                                <p class="text-sm text-gray-500 mt-1">Water and fluids are now correctly inserted into the 3D Voxel Grid, allowing them to cast volumetric shadows, reflect in mirrors, and block ambient light. Shallow water is clear, deep water fades to navy.</p>
                             </div>
                             <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Glossy / Blurry Reflections</span>
                                 <p class="text-sm text-gray-500 mt-1">Quartz, Prismarine, and Sea Lanterns now feature beautiful frosted/glossy ray-traced reflections.</p>
                             </div>
-                            <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">GI Light Leaks Fixed</span>
-                                <p class="text-sm text-gray-500 mt-1">Removed artificial ambient light injection. Pitch-black rooms no longer leak phantom Global Illumination from dark walls.</p>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">Luma-Preserving Filmic Tone Mapping</span>
+                                <p class="text-sm text-gray-500 mt-1">Luminance-only curve that preserves 100% of real RGB chromaticity. Eliminates the grey, washed-out veil while keeping lush green grass and rich golden sunsets.</p>
+                            </div>
+                            <div class="patch-item patch-update">
+                                <span class="text-white font-medium">Retina MetalFX Auto-Detect</span>
+                                <p class="text-sm text-gray-500 mt-1">Prisma automatically selects the best MetalFX render scale for your display on first launch: 0.40 for M4 Max native 3.4K, 0.50 for standard Retina, 0.75 for 1080p.</p>
                             </div>
                             <div class="patch-item patch-fix">
-                                <span class="text-white font-medium">Motion Vector Artifacts Fixed</span>
-                                <p class="text-sm text-gray-500 mt-1">Inverted and correctly mapped motion vectors to Apple's pixel-space format, fixing all edge smearing and Chromatic Aberration ghosting.</p>
+                                <span class="text-white font-medium">GI Light Leaks & Motion Vectors</span>
+                                <p class="text-sm text-gray-500 mt-1">Pitch-black rooms no longer leak phantom Global Illumination from dark walls. Also inverted and correctly mapped motion vectors, fixing all edge smearing and ghosting.</p>
                             </div>
+                        </div>
+                        
+                        <!-- Limitations Section -->
+                        <div class="mt-8 bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                            <h5 class="text-red-400 font-semibold mb-2 flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                Known Limitations
+                            </h5>
+                            <ul class="list-disc list-inside text-sm text-red-300/80 space-y-1">
+                                <li>Muito noisy (ruído) em resoluções internas mais baixas.</li>
+                                <li>Blur e Ghosting perceptível ao girar a câmera rápido ou observar objetos em movimento rápido sob baixa resolução do MFX.</li>
+                                <li>Global Illumination pode demorar alguns quadros para acumular estabilidade após transições bruscas.</li>
+                            </ul>
                         </div>
                     </div>
 
