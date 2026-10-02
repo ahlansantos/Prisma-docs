@@ -477,20 +477,20 @@ kernel void custom_bloom(
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">ReShade-Style In-Game Overlay</span>
-                                <p class="mt-1 text-gray-400 text-sm">Shifted the Prisma UI configuration menu to a left-aligned, translucent overlay menu, similar to ReShade.</p>
+                                <span class="text-white font-medium">In-Game Overlay</span>
+                                <p class="mt-1 text-gray-400 text-sm">Moved the Prisma configuration menu to a left-aligned overlay panel.</p>
                             </div>
                             <div class="patch-item patch-new">
-                                <span class="text-white font-medium">In-Game Chat Command Gateway</span>
-                                <p class="mt-1 text-gray-400 text-sm">Type <code>/prisma</code> or <code>/reshade</code> in the chat to seamlessly toggle the configuration overlay without pausing the game.</p>
+                                <span class="text-white font-medium">Chat Command Gateway</span>
+                                <p class="mt-1 text-gray-400 text-sm">Type <code>/prisma</code> in the chat to seamlessly open the settings menu.</p>
                             </div>
                             <div class="patch-item patch-new">
                                 <span class="text-white font-medium">Native True HDR Support</span>
-                                <p class="mt-1 text-gray-400 text-sm">Toggle "Real HDR" to pipe unbounded EDR light values directly into CAMetalLayer, bypassing SDR filmic tonemapping for blindingly bright skies on compatible XDR displays.</p>
+                                <p class="mt-1 text-gray-400 text-sm">Toggle "Real HDR" to pipe true linear EDR output directly to macOS for blooming highlights on XDR displays.</p>
                             </div>
                             <div class="patch-item patch-improved">
                                 <span class="text-white font-medium">Extreme FPS Volumetric Clouds Optimization</span>
-                                <p class="mt-1 text-gray-400 text-sm">Slashed volumetric cloud raymarching costs by up to 75% for sky pixels by implementing dynamic noise iteration Level-Of-Detail (LOD).</p>
+                                <p class="mt-1 text-gray-400 text-sm">Slashed cloud raymarching costs by up to 75% via dynamic noise iteration Level-Of-Detail (LOD).</p>
                             </div>
                         </div>
                     </div>
