@@ -469,11 +469,40 @@ kernel void custom_bloom(
                         </div>
                     </div>
                     
-                                        <!-- Preview 3 Hotfix -->
+                                        <!-- Preview 4 -->
+                    <div class="mb-12 text-left max-w-4xl mx-auto">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 4</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 font-medium">Latest Release</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">True HDR Output Unlocked</span>
+                                <p class="mt-1 text-gray-400 text-sm">Removed artificial SDR limits. True linear EDR values now flow directly to macOS, allowing XDR displays to output brilliant, physically correct highlights.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">MetalFX Stability Fix</span>
+                                <p class="mt-1 text-gray-400 text-sm">Resolved an Apple Neural Engine crash and black artifacts caused by NaN calculations in point light shadows.</p>
+                            </div>
+                            <div class="patch-item patch-improved">
+                                <span class="text-white font-medium">Ray Traced Fog Overhaul</span>
+                                <p class="mt-1 text-gray-400 text-sm">Replaced basic jitter with Interleaved Gradient Noise to eliminate banding and scanlines. Fog distances are now decoupled to prevent blinding light blowouts.</p>
+                            </div>
+                            <div class="patch-item patch-improved">
+                                <span class="text-white font-medium">Single-Page UI & Floodfill</span>
+                                <p class="mt-1 text-gray-400 text-sm">Scrollable dynamic settings menu, plus a new aggressively optimized SEUS-style Floodfill lighting mode when point light shadows are disabled.</p>
+                            </div>
+                            <div class="patch-item patch-fix">
+                                <span class="text-white font-medium">RTAO & Emissives Fixes</span>
+                                <p class="mt-1 text-gray-400 text-sm">RTAO now correctly maps Snow Layers and Carpets (no more full-block shadows). Emissive blocks (Sea Lanterns) maintain rich color without blooming into pure white.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview 3 Hotfix -->
                     <div class="mb-12 text-left max-w-4xl mx-auto">
                         <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-6">
                             <h4 class="text-lg font-semibold text-white">Prisma 26.3 Preview 3 Hotfix</h4>
-                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 font-medium">Latest Release</span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-gray-300 font-light">
                             <div class="patch-item patch-new">
