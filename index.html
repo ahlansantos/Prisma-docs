@@ -480,6 +480,14 @@ kernel void custom_bloom(
                                 <span class="text-white font-medium">True HDR Output Unlocked</span>
                                 <p class="mt-1 text-gray-400 text-sm">Removed artificial SDR limits. True linear EDR values now flow directly to macOS, allowing XDR displays to output brilliant, physically correct highlights.</p>
                             </div>
+                            <div class="patch-item patch-new">
+                                <span class="text-white font-medium">VXGI Temporal Denoiser 2.0</span>
+                                <p class="mt-1 text-gray-400 text-sm">Eliminated the spinning/strobing "rave" effect! Implemented complementary 180° non-rotating hemisphere rays, 5x5 cross-bilateral filtering, and world-space temporal reprojection to stabilize bounce lighting.</p>
+                            </div>
+                            <div class="patch-item patch-improved">
+                                <span class="text-white font-medium">SEUS PTGI-style Floodfill</span>
+                                <p class="mt-1 text-gray-400 text-sm">When Ray Traced Point Light Shadows are off, Prisma now uses an aggressively optimized, soft-capped additive floodfill. Perfect colors and intensity indoors with zero shadow-ray performance cost.</p>
+                            </div>
                             <div class="patch-item patch-fix">
                                 <span class="text-white font-medium">MetalFX Stability Fix</span>
                                 <p class="mt-1 text-gray-400 text-sm">Resolved an Apple Neural Engine crash and black artifacts caused by NaN calculations in point light shadows.</p>
@@ -489,8 +497,8 @@ kernel void custom_bloom(
                                 <p class="mt-1 text-gray-400 text-sm">Replaced basic jitter with Interleaved Gradient Noise to eliminate banding and scanlines. Fog distances are now decoupled to prevent blinding light blowouts.</p>
                             </div>
                             <div class="patch-item patch-improved">
-                                <span class="text-white font-medium">Single-Page UI & Floodfill</span>
-                                <p class="mt-1 text-gray-400 text-sm">Scrollable dynamic settings menu, plus a new aggressively optimized SEUS-style Floodfill lighting mode when point light shadows are disabled.</p>
+                                <span class="text-white font-medium">Single-Page Responsive UI</span>
+                                <p class="mt-1 text-gray-400 text-sm">Refactored the settings screen into a clean, dynamically resizing single-page scrolling list to fit any resolution or GUI scale.</p>
                             </div>
                             <div class="patch-item patch-fix">
                                 <span class="text-white font-medium">RTAO & Emissives Fixes</span>
